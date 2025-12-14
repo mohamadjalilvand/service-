@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کارت دیجیتالی خدمات : پکیج‌های توسعه هوشمند</title>
+    <!-- لود Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- فونت وزین متان -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* تعریف رنگ‌های جدید لوکس برای برنز، نقره، طلا و پلاتینیوم */
+        :root {
+            --color-gold-shiny: #ffc72c; 
+            --color-bronze-lux: #cd7f32; /* برنزی لوکس (Copper) */
+            --color-silver-lux: #c0c0c0; /* نقره‌ای روشن و سرد */
+            --color-platinum-lux: #33aaff; /* رنگ جدید برای پکیج ایجنت هوشمند (آبی فوتوریستی) */
+            
+            --color-dark-blue: #0f172a; 
+            --color-glass-dark: #1e293b;
+        }
+
+        body { 
+            font-family: 'Vazirmatn', sans-serif; 
+            background-color: #0b1122; 
+        }
+
+        /* افکت شیشه‌ای پایه (Glassmorphism) */
+        .glass-box {
+            background-color: rgba(255, 255, 255, 0.05); /* پس‌زمینه شفاف */
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); 
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* افکت hover برای جذابیت بیشتر */
+        .glass-box:hover {
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* استایل خاص برای هدر - حفظ گرادیانت موجود */
+        .header-gradient {
+            background-image: linear-gradient(to right, #4f46e5, #0ea5e9);
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.5); 
+            border: 1px solid var(--color-gold-shiny); 
+        }
+        
+        /* اسکرول‌بار بهینه شده */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-dark-blue); }
+        ::-webkit-scrollbar-thumb { background: var(--color-gold-shiny); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #eab308; } 
+        
+        /* استایل لیست برای مشخصات پکیج */
+        .package-list li {
+            position: relative;
+            padding-right: 1.5rem;
+            margin-bottom: 0.75rem; 
+            display: flex;
+            align-items: flex-start;
+        }
+        .package-list li::before {
+            content: '✓';
+            color: #34d399; /* Emerald for confirmation - پیش‌فرض */
+            font-weight: bold;
+            font-size: 1.25rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+            line-height: 1.5rem;
+        }
+        
+        /* ---------------------------------------------------- */
+        /* استایل‌های پرمیوم برای پکیج‌های برنزی، نقره‌ای، طلایی و پلاتینیوم */
+        /* ---------------------------------------------------- */
+
+        /* استایل ویژه برای پکیج برنزی */
+        .glass-bronze-premium {
+            background-color: rgba(255, 255, 255, 0.08); 
+            border: 2px solid var(--color-bronze-lux);
+            /* سایه برنزی برای ایجاد هاله */
+            box-shadow: 0 0 40px rgba(205, 127, 50, 0.4), 0 4px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(1.01);
+        }
+        .glass-bronze-premium:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 60px rgba(205, 127, 50, 0.6), 0 8px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* استایل ویژه برای پکیج نقره‌ای */
+        .glass-silver-premium {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--color-silver-lux);
+            /* سایه نقره‌ای برای ایجاد هاله */
+            box-shadow: 0 0 40px rgba(192, 192, 192, 0.4), 0 4px 30px rgba(0, 0, 0, 0.3);
+            transform: scale(1.01);
+        }
+        .glass-silver-premium:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 60px rgba(192, 192, 192, 0.6), 0 8px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* استایل ویژه برای پکیج طلایی */
+        .glass-gold-premium {
+            background-color: rgba(255, 255, 255, 0.12);
+            border: 2px solid var(--color-gold-shiny);
+            box-shadow: 0 0 50px rgba(255, 199, 44, 0.6), 0 4px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(1.02);
+        }
+        .glass-gold-premium:hover {
+             transform: scale(1.04);
+             box-shadow: 0 0 70px rgba(255, 199, 44, 0.8), 0 8px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        /* استایل ویژه برای پکیج پلاتینیوم (ایجنت هوشمند) */
+        .glass-platinum-premium {
+            background-color: rgba(255, 255, 255, 0.15); /* شفافیت بالاتر */
+            border: 2px solid var(--color-platinum-lux);
+            /* سایه پلاتینیوم (آبی درخشان) برای ایجاد هاله */
+            box-shadow: 0 0 60px rgba(51, 170, 255, 0.7), 0 4px 30px rgba(0, 0, 0, 0.6);
+            transform: scale(1.03); /* برجستگی بیشتر */
+        }
+        .glass-platinum-premium:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 90px rgba(51, 170, 255, 0.9), 0 8px 50px rgba(0, 0, 0, 0.7);
+        }
+        /* تغییر رنگ تیک لیست برای پکیج پلاتینیوم */
+        .platinum-list li::before {
+            color: var(--color-platinum-lux);
+        }
+    </style>
+</head>
+
+<body class="text-white relative overflow-x-hidden">
+    <!-- پس‌زمینه متحرک و رنگی برای تقویت افکت شیشه‌ای -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10">
+        <!-- دایره آبی تیره/نیلی بزرگ (حفظ رنگ آبی موجود) -->
+        <div class="absolute w-[800px] h-[800px] bg-indigo-900/40 rounded-full blur-3xl opacity-30 top-[-200px] left-[-300px] animate-pulse"></div>
+        <!-- دایره سفید/طلایی کوچکتر برای درخشش -->
+        <div class="absolute w-[400px] h-[400px] bg-white/10 rounded-full blur-3xl opacity-20 bottom-[-100px] right-[-100px] animate-pulse-slow"></div>
+    </div>
+
+
+    <div class="container mx-auto px-4 py-8 md:py-16 max-w-7xl relative z-10">
+        
+        <!-- 1. هدر (بدون تغییر محتوا و ساختار) -->
+        <header class="flex justify-between items-center mb-16 header-gradient p-6 sm:p-8 rounded-3xl shadow-2xl shadow-indigo-500/50">
+            <!-- نماد سند رسمی (File/Document Icon) -->
+            <svg class="h-16 w-16 md:h-20 md:w-20 text-white p-3 bg-indigo-700 rounded-full shadow-lg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            
+            <div class="text-center mx-2">
+                <p class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight mb-1">گروه توسعه نرم‌افزار شرکت فناوران هوشمند الماس پارس</p>
+               
+            </div>
+
+            <!-- لوگوی شرکت (همان Placeholder سمت راست) -->
+            <img src="asset/logo.png" 
+                alt="لوگوی شرکت" 
+                class="h-16 w-16 md:h-20 md:w-20 p-2 bg-white rounded-full object-contain shadow-xl shadow-black/50"
+                onerror="this.onerror=null; this.src='https://placehold.co/80x80/000000/ffffff?text=LOGO';">
+        </header>
+
+        <!-- 2. عنوان اصلی کارت دیجیتالی -->
+        <section class="mb-12 p-6 sm:p-8 text-center glass-box rounded-3xl shadow-2xl">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-2 drop-shadow-md">
+                کارت دیجیتالی خدمات هوشمند
+            </h2>
+            <p class="text-lg text-white/70">
+                پکیج‌های توسعه نرم‌افزار و وب اختصاصی شرکت <span class="text-sky-400 font-bold"></span>
+            </p>
+        </section>
+
+        <!-- 3. بخش پکیج‌های قیمت‌گذاری (Pricing Packages) -->
+        <section class="mb-16">
+            <!-- شبکه ریسپانسیو برای کارت‌ها: 1 ستون در موبایل، 2 ستون در تبلت، 4 ستون در دسکتاپ بزرگ -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-6 lg:gap-8">
+
+                <!-- Package 1: Bronze (برنزی) -->
+                <div class="glass-box rounded-3xl p-8 flex flex-col glass-bronze-premium">
+                    <div class="mb-6">
+                        <!-- رنگ عنوان از متغیر برنزی استفاده می‌کند -->
+                        <h3 class="text-3xl font-black drop-shadow-md" style="color: var(--color-bronze-lux);">
+                            پکیج برنزی
+                        </h3>
+                        <p class="text-base text-white/70 mt-1">حضور وب پایه و شروع کار</p>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <p class="text-4xl font-extrabold text-white/90">
+                            ۵۰ <span class="text-xl font-normal text-white/60 mr-1">میلیون تومان</span>
+                        </p>
+                        <p class="text-sm text-white/50">شروع قیمت و توسعه با وردپرس</p>
+                    </div>
+
+                    <ul class="package-list text-white/80 flex-grow">
+                        <li><span class="font-bold">وبسایت سریع با وردپرس</span></li>
+                        <li>پیاده‌سازی <span class="text-green-400">سئو پایه</span> (SEO Optimization)</li>
+                        <li>خدمات ادمینی و بروزرسانی</li>
+                        <li>پشتیبانی فنی و امنیتی  </li>
+                    </ul>
+
+                    <!-- دکمه‌ای با لینک به فوتر تماس -->
+                    <a href="#contact-footer" class="mt-8 block text-center py-3 font-extrabold rounded-xl text-white bg-amber-700 hover:bg-amber-600 transition-all shadow-lg shadow-amber-700/50">
+                        انتخاب پکیج برنزی
+                    </a>
+                </div>
+
+                <!-- Package 2: Silver (نقره‌ای) -->
+                <div class="glass-box rounded-3xl p-8 flex flex-col glass-silver-premium">
+                    <div class="mb-6">
+                         <!-- رنگ عنوان از متغیر نقره‌ای استفاده می‌کند -->
+                        <h3 class="text-3xl font-black drop-shadow-md" style="color: var(--color-silver-lux);">
+                            پکیج نقره‌ای
+                        </h3>
+                        <p class="text-base text-white/70 mt-1">وب‌اپلیکیشن سفارشی و سئو پیشرفته</p>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <p class="text-4xl font-extrabold text-white">
+                            ۱۵۰ <span class="text-xl font-normal text-white/60 mr-1">میلیون تومان</span>
+                        </p>
+                        <p class="text-sm text-white/50">شروع قیمت توسعه اختصاصی و سئو</p>
+                    </div>
+
+                    <ul class="package-list text-white/90 flex-grow">
+                        <li><span class="font-bold">طراحی اختصاصی با کدنویسی</span> (React/ javascript )</li>
+                        <li>توسعه بک‌اند پیشرفته و دیتابیس (Django/PostgreSQL)</li>
+                        <li>خدمات <span class="text-green-400">سئو و ادمینی</span> وبسایت</li>
+                        <li>آزمون جامع کیفیت (QA)</li>
+                        <li>پشتیبانی فنی و بروزرسانی  </li>
+                    </ul>
+
+                    <!-- دکمه‌ای با لینک به فوتر تماس -->
+                    <a href="#contact-footer" class="mt-8 block text-center py-3 font-extrabold rounded-xl text-indigo-900 bg-gray-300 hover:bg-gray-200 transition-all shadow-lg shadow-gray-400/50">
+                        انتخاب پکیج نقره‌ای
+                    </a>
+                </div>
+
+                <!-- Package 3: Gold (طلایی) -->
+                <div class="glass-box rounded-3xl p-8 flex flex-col glass-gold-premium relative">
+                    <!-- نوار پرمیوم -->
+                    <div class="absolute top-0 right-0 bg-[var(--color-gold-shiny)] text-black text-xs font-black px-4 py-1 rounded-bl-xl rounded-tr-3xl">
+                        ⭐️ راهکار جامع
+                    </div>
+
+                    <div class="mb-6 mt-4">
+                        <!-- رنگ عنوان از متغیر طلایی استفاده می‌کند -->
+                        <h3 class="text-4xl font-black text-[var(--color-gold-shiny)] drop-shadow-xl">
+                            پکیج طلایی
+                        </h3>
+                        <p class="text-base text-white/70 mt-1">برندینگ، تولید محتوا و وبسایت</p>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <p class="text-4xl font-extrabold text-white">
+                            ۳۰۰+ <span class="text-xl font-normal text-white/60 mr-1">میلیون تومان</span>
+                        </p>
+                        <p class="text-sm text-white/50">شروع قیمت راهکار کامل برندینگ</p>
+                    </div>
+
+                    <ul class="package-list text-white flex-grow space-y-3">
+                        <li>توسعه وبسایت <span class="font-bold">اختصاصی یا وردپرس</span></li>
+                        <li>پشتیبانی، ادمینی و <span class="text-[var(--color-gold-shiny)] font-bold">طراحی لوگو و لوگوموشن</span></li>
+                        <li>ساخت <span class="text-sky-300">تیزر، انیمیشن تبلیغاتی</span> و عکاسی</li>
+                        <li>تولید محتوای تخصصی و خدمات سئو کامل</li>
+                        <li><span class="font-bold">پشتیبانی VIP</span>  و آموزش کامل</li>
+                    </ul>
+
+                    <!-- دکمه‌ای با لینک به فوتر تماس -->
+                    <a href="#contact-footer" class="mt-8 block text-center py-4 font-extrabold rounded-2xl text-black bg-[var(--color-gold-shiny)] hover:bg-amber-400 transition-all shadow-2xl shadow-[var(--color-gold-shiny)]/70 transform hover:scale-[1.03] active:scale-[0.99]">
+                        تماس برای مشاوره و سفارش
+                    </a>
+                </div>
+                
+                <!-- Package 4: Platinum (پلاتینیوم - ایجنت هوشمند) -->
+                <div class="glass-box rounded-3xl p-8 flex flex-col glass-platinum-premium relative">
+                    <!-- نوار پرمیوم جدید -->
+                    <div class="absolute top-0 right-0 bg-[var(--color-platinum-lux)] text-black text-xs font-black px-4 py-1 rounded-bl-xl rounded-tr-3xl">
+                        ✨ هوش مصنوعی
+                    </div>
+
+                    <div class="mb-6 mt-4">
+                        <!-- رنگ عنوان از متغیر پلاتینیوم استفاده می‌کند -->
+                        <h3 class="text-4xl font-black drop-shadow-xl" style="color: var(--color-platinum-lux);">
+                            ایجنت هوشمند اختصاصی
+                        </h3>
+                        <p class="text-base text-white/70 mt-1">توسعه مدل‌های هوش مصنوعی سفارشی</p>
+                    </div>
+
+                    <div class="text-center mb-8">
+                        <p class="text-4xl font-extrabold text-white">
+                            <span class="text-xl font-normal text-white/60 mr-1">توافقی</span>
+                        </p>
+                        <p class="text-sm text-white/50">بر اساس حجم پروژه و پیچیدگی</p>
+                    </div>
+
+                    <ul class="package-list text-white flex-grow space-y-3 platinum-list">
+                        <li><span class="font-bold">توسعه مدل LLM/Agent</span> بر اساس نیاز</li>
+                        <li>استقرار مدل در زیرساخت ابری اختصاصی</li>
+                        <li>آموزش مدل با داده‌های اختصاصی شرکت</li>
+                        <li>پشتیبانی از چندزبانگی و ابزارهای پیشرفته</li>
+                        <li><span class="font-bold">قرارداد محرمانگی و مالکیت</span> کامل کد</li>
+                    </ul>
+
+                    <!-- دکمه‌ای با لینک به فوتر تماس -->
+                    <a href="#contact-footer" class="mt-8 block text-center py-4 font-extrabold rounded-2xl text-black bg-[var(--color-platinum-lux)] hover:bg-[#66c2ff] transition-all shadow-2xl shadow-[var(--color-platinum-lux)]/70 transform hover:scale-[1.03] active:scale-[0.99]">
+                        مشاوره و شروع پروژه AI
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- بخش توضیحات تکمیلی (به عنوان یک بخش Glass Box) -->
+        <section class="mb-16 p-6 glass-box rounded-3xl shadow-2xl">
+            <h3 class="text-2xl font-extrabold text-indigo-400 mb-4 pb-2 border-b border-white/20">
+                🚀 چرا شرکت فناوران هوشمند الماس پارس را انتخاب کنید؟
+            </h3>
+            <p class="text-lg text-white/70 leading-relaxed text-justify">
+                ما در **شرکت فناوران هوشمند الماس پارس** متعهد به تحول کسب‌وکار شما در فضای دیجیتال هستیم. با تکیه بر تخصص عمیق در **توسعه نرم‌افزار، وبسایت‌های اختصاصی (کدنویسی یا وردپرس)، سئوی پیشرفته و هوش مصنوعی**، ما یک راهکار جامع از برندینگ (طراحی لوگو، ساخت تیزر) تا پیاده‌سازی زیرساخت‌های هوشمند (ایجنت‌های AI) ارائه می‌دهیم. انتخاب پکیج‌های ما، تضمین کیفیت، امنیت، عملکرد بهینه و پشتیبانی حرفه‌ای تیم متخصص ماست تا حضور دیجیتال شما به بهترین شکل ممکن متجلی شود.
+            </p>
+        </section>
+
+        <!-- دکمه پیشرفت پروژه (در اینجا به "مشاهده دمو" تغییر کرد) -->
+        <!-- <div class="text-center mb-20">
+            <a href="Project_Progress.html" 
+               class="inline-block w-full sm:w-3/4 md:w-1/2 lg:w-1/3 py-4 px-12 text-xl font-extrabold text-black bg-white rounded-2xl 
+                      shadow-2xl shadow-white/50 
+                      hover:bg-gray-200 transition-all transform hover:scale-[1.05] active:scale-[0.98] 
+                      border-2 border-indigo-500"
+               style="letter-spacing: 1px;">
+                مشاهده دمو و نمونه کارها
+            </a>
+        </div> -->
+
+        <!-- 4. فوتر (ID جدید: contact-footer#) برای لینک دکمه‌ها -->
+        <footer id="contact-footer" class="text-center mt-12 p-8 md:p-12 glass-box rounded-t-[40px] border-t-8 border-sky-500/50 shadow-inner shadow-black/50">
+            
+            <!-- بخش 1: لوگو و نام شرکت -->
+            <div class="flex flex-col items-center justify-center mb-10 pb-4 border-b border-white/20">
+                <img src="asset/logo.png" 
+                    alt="لوگوی شرکت فناوران هوشمند الماس پارس" 
+                    class="h-24 w-24 p-3 bg-white/90 rounded-full object-contain shadow-2xl shadow-white/30 mb-4"
+                    onerror="this.onerror=null; this.src='https://placehold.co/120x120/000000/ffffff?text=LOGO';">
+
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-wider">
+                    شرکت فناوران هوشمند الماس پارس
+                </h3>
+                <p class="text-base text-indigo-300 mt-1">توسعه نرم‌افزار | طراحی وبسایت | هوش مصنوعی | امنیت شبکه</p>
+            </div>
+            
+            <!-- بخش 2: اطلاعات تماس -->
+            <h4 class="text-xl font-bold text-[var(--color-gold-shiny)] mb-6">
+                مدیریت ارشد و اطلاعات تماس
+            </h4>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 text-base mt-2 text-white/90 font-semibold">
+                
+                <!-- Contact Info 1: محمد جلیلوند (مدیر عامل) -->
+                <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 w-full sm:w-auto min-w-[200px] hover:bg-white/10 transition-colors">
+                    <p class="text-lg text-white font-bold">محمد جلیلوند</p>
+                    <p class="text-sm text-indigo-300 mb-1">مدیر عامل</p>
+                    <a href="tel:09021385669" class="text-sky-300 hover:text-white transition-colors flex items-center justify-center gap-2">
+                        <!-- آیکون تلفن (SVG) -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                        </svg>
+                        ۰۹۰۲۱۳۸۵۶۶۹
+                    </a>
+                </div>
+
+                <!-- Contact Info 2: مرتضی غلامیان (رئیس هیئت مدیره) -->
+                <div class="text-center p-4 bg-white/5 rounded-xl border border-white/10 w-full sm:w-auto min-w-[200px] hover:bg-white/10 transition-colors">
+                    <p class="text-lg text-white font-bold">مرتضی غلامیان</p>
+                    <p class="text-sm text-indigo-300 mb-1">رئیس هیئت مدیره</p>
+                    <a href="tel:09388867485" class="text-sky-300 hover:text-white transition-colors flex items-center justify-center gap-2">
+                        <!-- آیکون تلفن (SVG) -->
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
+                        </svg>
+                        ۰۹۳۸۸۸۶۷۴۸۵
+                    </a>
+                </div>
+            </div>
+            
+            <!-- متن کپی رایت -->
+            <p class="mt-10 text-sm text-white/50 font-semibold">
+                &copy; ۱۴۰۴ | کلیه حقوق این طراحی و توسعه متعلق به شرکت فناوران هوشمند الماس پارس می‌باشد.
+            </p>
+        </footer>
+
+    </div>
+</body>
+</html>
